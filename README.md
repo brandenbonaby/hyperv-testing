@@ -39,7 +39,7 @@ vmbus_testing --version
                         program will exit. The path must be the absolute path.
                         devices are found in /sys/kernel/debug/hyperv/<device>
 
-<h2> optional arguments: </h2>
+<h2> optional arguments: </h2> 
   
   -h, --help            show this help message and exit
 

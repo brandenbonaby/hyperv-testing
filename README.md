@@ -2,7 +2,7 @@
 
     My testing tool for the hyperv drivers in the linux kernel,
     you'll need to make sure to compile your kernel using
-    menuconfig to turn HYPERV_TESTING on. Currently this will
+    menuconfig to turn HYPERV_TESTING on kernel (5.3). Currently this will
     inject delays into host to guest communications
 
 

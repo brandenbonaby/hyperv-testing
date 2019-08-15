@@ -53,7 +53,7 @@ vmbus_testing --version
     -D, --dis-all-delay  Disable Buffer/Message delay testing on ALL devices. A
                          value equal to (-1) will keep the current delay value,
                          and a value equal to (0) will remove delay testing for
-                         the specfied delay column. only values (-1) and (0)
+                         the specified delay column. only values (-1) and (0)
                          will be accepted but at least one value must be a (0)
                          or a (-1).
 

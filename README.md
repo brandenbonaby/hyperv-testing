@@ -57,7 +57,7 @@ vmbus_testing --version
                          will be accepted but at least one value must be a (0)
                          or a (-1).
 
-    -d  , --delay-time    Buffer/message delay time. A value of (0) willdisable
+    -d  , --delay-time    Buffer/message delay time. A value of (0) will disable
                           delay testing on the specified delay column, while a
                           value of (-1) will ignore the specfied delay column.
                           The default values are [0] & [0]. The first column

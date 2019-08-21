@@ -18,9 +18,9 @@ vmbus_testing --version
   
 <h2> positional arguments: </h2>  
   
-    delay               Delay buffer/message reads in microseconds.  
-    disable-all         Disable ALL testing on all vmbus devices.  
-    view                View testing on vmbus devices.  
+    delay                 Delay buffer/message reads in microseconds.  
+    disable-all           Disable ALL testing on all vmbus devices.  
+    view                  View testing on vmbus devices.  
   
 <h2> optional arguments: </h2>  
   
@@ -43,19 +43,19 @@ vmbus_testing --version
   
     -h, --help            show this help message and exit
 
-    -E, --en_all    Enable Buffer/Message Delay testing on ALL devices.
+    -E, --en_all          Enable Buffer/Message Delay testing on ALL devices.
                           Use -d option with this to set the values for both the
                           buffer delay and the message delay. No value can be
                           (0) or less than (-1). If testing is disabled on a
                           device prior to running this command, testing will be
                           enabled on the device as a result of this command.
                         
-    -D, --dis_all  Disable Buffer/Message delay testing on ALL devices. A
-                         value equal to (-1) will keep the current delay value,
-                         and a value equal to (0) will remove delay testing for
-                         the specified delay column. only values (-1) and (0)
-                         will be accepted but at least one value must be a (0)
-                         or a (-1).
+    -D, --dis_all         Disable Buffer/Message delay testing on ALL devices. A
+                          value equal to (-1) will keep the current delay value,
+                          and a value equal to (0) will remove delay testing for
+                          the specified delay column. only values (-1) and (0)
+                          will be accepted but at least one value must be a (0)
+                          or a (-1).
 
     -d  , --delay-time    Buffer/message delay time. A value of (0) will disable
                           delay testing on the specified delay column, while a
@@ -67,6 +67,6 @@ vmbus_testing --version
 
 <h2> optional arguments: when positional argument 'view' used </h2> 
 
-    -V, --view_all    View the test status for all vmbus devices.
+    -V, --view_all        View the test status for all vmbus devices.
   
-    -v, --view_single View test values for a single vmbus device.
+    -v, --view_single     View test values for a single vmbus device.

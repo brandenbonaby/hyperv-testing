@@ -2,8 +2,8 @@
 
     My testing tool for the hyperv drivers in the linux kernel,
     you'll need to make sure to compile your kernel using
-    menuconfig to turn HYPERV_TESTING on kernel (5.3). Currently this will
-    inject delays into host to guest communications
+    menuconfig to turn HYPERV_TESTING on in kernel (5.3).
+    Currently this will inject delays into host to guest communications.
 
 
 <h2> usage:  </h2>
@@ -39,7 +39,7 @@ vmbus_testing --version
                           program will exit. The path must be the absolute path.
                           devices are found in /sys/kernel/debug/hyperv/<device>
 
-<h2> optional arguments: </h2> 
+<h2> optional arguments: when positional argument 'delay' used </h2> 
   
     -h, --help            show this help message and exit
 
@@ -64,6 +64,8 @@ vmbus_testing --version
                           represents the buffer delay value and the second
                           represents the message delay value. Value constraints:
                           -1 <= value <= 1000.
+
+<h2> optional arguments: when positional argument 'view' used </h2> 
 
     -V, --view-all-states    View the test status for all vmbus devices.
   

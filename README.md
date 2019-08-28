@@ -35,14 +35,15 @@
   
     -q, --quiet            silence none important test messages
 
-<h4> optional arguments: Shared by test methods and arguments postfixed with _single </h4> 
+<h4> optional arguments: Shared by test methods </h4> 
   
      -h, --help            show this help message and exit
      -E, --enable_all      Enable the specified test type on ALL vmbus devices.
      -e, --enable_single   Enable the specified test type on a SINGLE vmbus
                            device.
      -p, --path            Debugfs path to a vmbus device. The path must be the
-                           absolute path to the device.
+                           absolute path to the device. **This option will also
+                           be available to arguments postfixed with _single**
                            
 <h4> optional arguments: 'delay' specific arguments </h4> 
      

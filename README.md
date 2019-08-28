@@ -18,7 +18,7 @@
     vmbus_testing [view_single    | v] -p <debugfs-path>
     vmbus_testing --version  
   
-<h2> positional arguments: </h2>  
+<h3> positional arguments: </h3>  
   
     ddelay                 Delay the ring buffer interrupt or the ring buffer
                            message reads in microseconds.
@@ -27,7 +27,7 @@
     view_all       (V)     View the test state for ALL vmbus devices.
     view_single    (v)     View the test values for a SINGLE vmbus device. 
   
-<h2> optional arguments: </h2>  
+<h4> optional arguments: </h4>  
   
     -h, --help             show this help message and exit
   
@@ -35,7 +35,7 @@
   
     -q, --quiet            silence none important test messages
 
-<h2> optional arguments: Shared by test methods and arguments postfixed with _single </h2> 
+<h4> optional arguments: Shared by test methods and arguments postfixed with _single </h4> 
   
      -h, --help            show this help message and exit
      -E, --enable_all      Enable the specified test type on ALL vmbus devices.
@@ -44,7 +44,7 @@
      -p, --path            Debugfs path to a vmbus device. The path must be the
                            absolute path to the device.
                            
-<h2> optional arguments: 'delay' specific arguments </h2> 
+<h4> optional arguments: 'delay' specific arguments </h4> 
      
       -t  , --delay_time   Set [buffer] & [message] delay time. Value
                            constraints: -1 == value or 0 < value <= 1000. Use -1

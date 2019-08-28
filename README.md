@@ -2,71 +2,51 @@
 
     My testing tool for the hyperv drivers in the linux kernel,
     you'll need to make sure to compile your kernel using
-    menuconfig to turn HYPERV_TESTING on in kernel (5.3)<rc5>+.
-    Currently this will inject delays into host to guest communications.
+    menuconfig to enable HYPERV_TESTING. NOTE* this is only available in
+    kernel versions (5.3.0<rc6>) and up.
 
+<h4> Current testing methods: </h4>
 
+   1. delay
+     
 <h2> usage:  </h2>
 
-vmbus_testing [-s] [0|1] [-q] [-p] <debugfs-path>  
-vmbus_testing -s [0|1] [-q] -p <debugfs-path> delay -d [buffer-delay-value] [message-delay-value]  
-vmbus_testing [-q] delay [buffer-delay-value] [message-delay-value] -E  
-vmbus_testing [-q] delay [buffer-delay-value] [message-delay-value] -D  
-vmbus_testing [-q] disable-all  
-vmbus_testing [-q] view [-v|-V]  
-vmbus_testing --version  
+    vmbus_testing delay [-e|-E] -t [value] [value] [-p] <debugfs-path>
+    vmbus_testing [disable_single | d] -p <debugfs-path>
+    vmbus_testing [disable_all    | D]  
+    vmbus_testing [view_all       | V]
+    vmbus_testing [view_single    | v] -p <debugfs-path>
+    vmbus_testing --version  
   
 <h2> positional arguments: </h2>  
   
-    delay                 Delay buffer/message reads in microseconds.  
-    disable-all           Disable ALL testing on all vmbus devices.  
-    view                  View testing on vmbus devices.  
+    ddelay                 Delay the ring buffer interrupt or the ring buffer
+                           message reads in microseconds.
+    disable_all    (D)     Disable ALL testing on ALL vmbus devices.
+    disable_single (d)     Disable ALL testing on a SINGLE vmbus device.
+    view_all       (V)     View the test state for ALL vmbus devices.
+    view_single    (v)     View the test values for a SINGLE vmbus device. 
   
 <h2> optional arguments: </h2>  
   
-    -h, --help            show this help message and exit
+    -h, --help             show this help message and exit
   
-    --version             show program's version number and exit  
+    --version              show program's version number and exit  
   
-    -q, --quiet           silence none important test messages
-  
-    -s , --state          Turn testing ON or OFF for a single device. The value
-                          (1) will turn testing ON. The value of (0) will turn
-                          testing OFF with the default set to (0).
-  
-    -p , --path           Refers to the debugfs path to a vmbus device. If the
-                          path is not a valid path to a vmbus device, the
-                          program will exit. The path must be the absolute path.
-                          devices are found in /sys/kernel/debug/hyperv/<device>
+    -q, --quiet            silence none important test messages
 
-<h2> optional arguments: when positional argument 'delay' used </h2> 
+<h2> optional arguments: Shared by test methods and arguments postfixed with _single </h2> 
   
-    -h, --help            show this help message and exit
-
-    -E, --en_all          Enable Buffer/Message Delay testing on ALL devices.
-                          Use -d option with this to set the values for both the
-                          buffer delay and the message delay. No value can be
-                          (0) or less than (-1). If testing is disabled on a
-                          device prior to running this command, testing will be
-                          enabled on the device as a result of this command.
-                        
-    -D, --dis_all         Disable Buffer/Message delay testing on ALL devices. A
-                          value equal to (-1) will keep the current delay value,
-                          and a value equal to (0) will remove delay testing for
-                          the specified delay column. only values (-1) and (0)
-                          will be accepted but at least one value must be a (0)
-                          or a (-1).
-
-    -d  , --delay-time    Buffer/message delay time. A value of (0) will disable
-                          delay testing on the specified delay column, while a
-                          value of (-1) will ignore the specfied delay column.
-                          The default values are [0] & [0]. The first column
-                          represents the buffer delay value and the second
-                          represents the message delay value. Value constraints:
-                          -1 <= value <= 1000.
-
-<h2> optional arguments: when positional argument 'view' used </h2> 
-
-    -V, --view_all        View the test status for all vmbus devices.
-  
-    -v, --view_single     View test values for a single vmbus device.
+     -h, --help            show this help message and exit
+     -E, --enable_all      Enable the specified test type on ALL vmbus devices.
+     -e, --enable_single   Enable the specified test type on a SINGLE vmbus
+                           device.
+     -p, --path            Debugfs path to a vmbus device. The path must be the
+                           absolute path to the device.
+                           
+<h2> optional arguments: 'delay' specific arguments </h2> 
+     
+      -t  , --delay_time   Set [buffer] & [message] delay time. Value
+                           constraints: -1 == value or 0 < value <= 1000. Use -1
+                           to keep the previous value for that delay type, or a
+                           value > 0 <= 1000 to change the delay time.

@@ -79,6 +79,9 @@ def main():
         if (path and path[-1] == "/"):
                 path = path[:-1]
         validate_args_path(path, arg_set, file_map)
+        if (path and "enable_single" in arg_set):
+            state_path = locate_state(path, file_map)
+            set_test_state(state_path, dev_state.on.value, args.quiet)
 
         # Use subparsers as the key for different actions
         if ("delay" in arg_set):
@@ -87,15 +90,12 @@ def main():
                         set_delay_all_devices(file_map, args.delay_time,
                                               args.quiet)
                 else:
-                        state_path = locate_state(path, file_map)
-                        set_test_state(state_path, dev_state.on.value,
-                                       args.quiet)
                         set_delay_values(path, file_map, args.delay_time,
                                          args.quiet)
         elif ("disable_all" in arg_set or "D" in arg_set):
-                disable_all_testing(file_map, args.quiet)
+                disable_all_testing(file_map)
         elif ("disable_single" in arg_set or "d" in arg_set):
-                disable_testing_single_device(path, file_map, args.quiet)
+                disable_testing_single_device(path, file_map)
         elif ("view_all" in arg_set or "V" in arg_set):
                 get_all_devices_test_status(file_map)
         elif ("view_single" in arg_set or  "v" in arg_set):
@@ -254,25 +254,19 @@ def set_delay_all_devices(file_map, delay, quiet):
                                quiet)
                 set_delay_values(device, file_map, delay, quiet)
 
-# disable testing on a single device.
-# All test methods should be added to this function so that
-# the test method is disabled from the device once this
-# function is called.
-def disable_testing_single_device(device, file_map, quiet):
+# disable all testing on a SINGLE device.
+def disable_testing_single_device(device, file_map):
 
-        #disable list [buffer,message] for delay testing
-        disable_delay = [0, 0]
+        for name in file_map[device]:
+                file_location = file_map[device][name]
+                write_test_files(file_location, dev_state.off.value)
+        print("ALL testing now OFF for {}".format(device.split("/")[-1]))
 
-        set_test_state(locate_state(device, file_map),
-                       dev_state.off.value,
-                       quiet)
-        set_delay_values(device, file_map, disable_delay, quiet)
-
-# disabling testing on ALL devices
-def disable_all_testing(file_map, quiet):
+# disable all testing on ALL devices
+def disable_all_testing(file_map):
 
         for device in file_map:
-                disable_testing_single_device(device, file_map, quiet)
+                disable_testing_single_device(device, file_map)
 
 def parse_args():
         parser = argparse.ArgumentParser(prog = "vmbus_testing",usage ="\n"
@@ -290,7 +284,9 @@ def parse_args():
         parser.add_argument("--version", action = "version",
                 version = '%(prog)s 0.1.0')
         parser.add_argument("-q","--quiet", action = "store_true",
-                help = "silence none important test messages.")
+                help = "silence none important test messages."
+                       " This will only work when enabling testing"
+                       " on a device.")
         # Use the path parser to hold the --path attribute so it can
         # be shared between subparsers. Also do the same for the state
         # parser, as all testing methods will use --enable_all and

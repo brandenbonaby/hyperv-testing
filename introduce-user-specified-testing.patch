@@ -1,60 +1,9 @@
-From d3e32c4995c8e4992fab91c3e43c2b0d6a3ef0f2 Mon Sep 17 00:00:00 2001
-Message-Id: <d3e32c4995c8e4992fab91c3e43c2b0d6a3ef0f2.1570130325.git.brandonbonaby94@gmail.com>
-In-Reply-To: <cover.1570130325.git.brandonbonaby94@gmail.com>
-References: <cover.1570130325.git.brandonbonaby94@gmail.com>
-From: Branden Bonaby <brandonbonaby94@gmail.com>
-Date: Wed, 11 Sep 2019 23:41:21 -0400
-Subject: [PATCH v6 1/2] drivers: hv: vmbus: Introduce latency testing
-To: kys@microsoft.com, haiyangz@microsoft.com, sthemmin@microsoft.com, sashal@kernel.org
-Cc: Branden Bonaby <brandonbonaby94@gmail.com>, linux-hyperv@vger.kernel.org, linux-kernel@vger.kernel.org
-
 Introduce user specified latency in the packet reception path
 By exposing the test parameters as part of the debugfs channel
 attributes. We will control the testing state via these attributes.
 
 Signed-off-by: Branden Bonaby <brandonbonaby94@gmail.com>
 ---
-changes in v6:
- - changed kernel version in documentation to 5.5
-
- - removed less than 0 if statement when dealing with
-   u64 datatype, as suggested by Michael.
-
-changes in v5:
- - As per Stephen's suggestion, Moved CONFIG_HYPERV_TESTING
-   to lib/Kconfig.debug.
-
- - Fixed build issue reported by Kbuild, with Michael's
-   suggestion to make hv_debugfs part of the hv_vmbus
-   module.
-
- - updated debugfs-hyperv to show kernel version 5.4
-
-changes in v4:
- - Combined v3 patch 2 into this patch, and changed the
-   commit description to reflect this.
-
- - Moved debugfs code from "vmbus_drv.c" that was in
-   previous v3 patch 2, into a new file "debugfs.c" in
-   drivers/hv.
-
- - Updated the Makefile to compile "debugfs.c" if
-   CONFIG_HYPERV_TESTING is enabled
-
- - As per Michael's comments, added empty implementations
-   of the new functions, so the compiler will not generate
-   code when CONFIG_HYPERV_TESTING is not enabled.
-
- - Added microseconds into description for files in
-   Documentation/ABI/testing/debugfs-hyperv.
-
-Changes in v2:
- - Add #ifdef in Kconfig file so test code will not interfere
-   with non-test code.
- - Move test code functions for delay to hyperv_vmbus header
-   file.
- - Wrap test code under #ifdef statement.
-
  Documentation/ABI/testing/debugfs-hyperv |  23 +++
  MAINTAINERS                              |   1 +
  drivers/hv/Makefile                      |   1 +

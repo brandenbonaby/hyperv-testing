@@ -3,7 +3,9 @@
     My testing tool for the hyperv drivers in the linux kernel,
     you'll need to make sure to compile your kernel using
     menuconfig to enable HYPERV_TESTING. NOTE* this is only available in
-    kernel versions (5.5) and up.
+    kernel versions (5.5) and up. However I have added my original patch in this
+    repository, should you not be on 5.5. Simply apply it and then you should
+    be able to use the python tool after recompiling your kernel.
 
 
 <h2> usage:  </h2>

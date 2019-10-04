@@ -3,12 +3,9 @@
     My testing tool for the hyperv drivers in the linux kernel,
     you'll need to make sure to compile your kernel using
     menuconfig to enable HYPERV_TESTING. NOTE* this is only available in
-    kernel versions (5.3.0<rc6>) and up.
+    kernel versions (5.5) and up.
 
-<h4> Current testing methods: </h4>
 
-   1. delay
-     
 <h2> usage:  </h2>
 
     vmbus_testing delay [-e|-E] -t [value] [value] [-p] <debugfs-path>

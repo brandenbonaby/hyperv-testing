@@ -6,7 +6,14 @@
     kernel versions (5.5) and up. However I have added my original patch in this
     repository, should you not be on 5.5. Simply apply it and then you should
     be able to use the python tool after recompiling your kernel.
-
+<div> 
+<h3 style="font-family: monospace;"> Accepted patches in Mainline Kernel </h3>
+</div>
+<div>
+    <p> <a href ="https://git.kernel.org/pub/scm/linux/kernel/git/hyperv/linux.git/commit/?h=hyperv-next&id=c48d8b04893afe35fd6f5ccbf339493bba277d43
+"> Python Tool </a></p>
+    <p> <a href ="https://git.kernel.org/pub/scm/linux/kernel/git/hyperv/linux.git/commit/?h=hyperv-next&id=af9ca6f9bb16e446a44393a797d0ae74d356a5c7"> Tap Mechanism </a></p> 
+</div>
 
 <h2> usage:  </h2>
 
